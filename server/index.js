@@ -11,8 +11,12 @@ app.use(cors());
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
-  })
+  });
+
+app.use(express.static(__dirname + '/images'));
 
 const port = process.env.PORT || 5000;
+
+app.use(express.static('public'));
 
 app.listen(port, ()=> console.log(`Server started on port ${port}`));
