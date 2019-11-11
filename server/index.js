@@ -44,17 +44,17 @@ db.run(`INSERT INTO langs(name) VALUES(?)`, ['C'], function(err) {
 let sql = `SELECT DISTINCT Name name FROM langs
            ORDER BY name`;
 
-var minutes = 5, the_interval = minutes * 1 * 1000;
+//var minutes = 5, the_interval = minutes * 1 * 1000;
 
-setInterval(function() {
-  db.all(sql, [], (err, rows) => {
-  if (err) {  
-    throw err;
-  }
-  rows.forEach((row) => {
-    console.log(row.name);
-  });
-});
+//setInterval(function() {
+//  db.all(sql, [], (err, rows) => {
+//  if (err) {  
+//    throw err;
+//  }
+//  rows.forEach((row) => {
+//    console.log(row.name);
+//  });
+//});
   // do your stuff here
-}, the_interval);
+//}, the_interval);
 
