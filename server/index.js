@@ -54,7 +54,7 @@ function sendToDatabase(available){
   });
 }
 
-//let sql = `SELECT * FROM available ORDER BY id DESC LIMIT 5`;
+let sql = `SELECT * FROM available ORDER BY spot DESC LIMIT 5`;
 
 var minutes = 5, the_interval = minutes * 1 * 1000;
 
