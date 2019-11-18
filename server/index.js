@@ -28,6 +28,7 @@ app.use('/watchdog', function (req, res, next) {
     console.log("watchdog from " + _message);
     var spot = req.param('spot');
     res.send("It is Alive" + _message);
+    sendToDatabase(spot);
 });
 
 app.listen(port, ()=> console.log(`Server started on port ${port}`));
@@ -40,30 +41,32 @@ let db = new sqlite3.Database('./test.db', (err) => {
 });
  
 
-db.run('CREATE TABLE IF NOT EXISTS langs(name text)');
+db.run('CREATE TABLE IF NOT EXISTS available(spot INT)');
 
-db.run(`INSERT INTO langs(name) VALUES(?)`, ['C'], function(err) {
+function sendToDatabase(available){
+  console.log(available)
+  db.run(`INSERT INTO available(spot) VALUES(` + available + ')' ,  function(err) {
       if (err) {
         return console.log(err.message);
       }
       // get the last insert id
       console.log(`A row has been inserted with rowid ${this.lastID}`);
   });
+}
 
-let sql = `SELECT DISTINCT Name name FROM langs
-           ORDER BY name`;
+//let sql = `SELECT * FROM available ORDER BY id DESC LIMIT 5`;
 
-//var minutes = 5, the_interval = minutes * 1 * 1000;
+var minutes = 5, the_interval = minutes * 1 * 1000;
 
-//setInterval(function() {
-//  db.all(sql, [], (err, rows) => {
-//  if (err) {  
-//    throw err;
-//  }
-//  rows.forEach((row) => {
-//    console.log(row.name);
-//  });
-//});
-  // do your stuff here
-//}, the_interval);
+setInterval(function() {
+  db.all(sql, [], (err, rows) => {
+  if (err) {  
+    throw err;
+  }
+  rows.forEach((row) => {
+    console.log(row.spot);
+  });
+});
+// do your stuff here
+}, the_interval);
 
