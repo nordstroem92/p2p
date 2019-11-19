@@ -76,7 +76,6 @@
       let pierId = "pier"+id;
       $("#"+pierId).toggleClass("red");
     });
-
     var ws = new WebSocket("wss://polar-sands-87869.herokuapp.com/");
     ws.onopen = function (event) {
     console.log('Connection is open ...');
@@ -96,4 +95,3 @@
 </script>
 </body>
 </html>
-
