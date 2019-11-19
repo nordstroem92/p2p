@@ -69,8 +69,9 @@ app.post('/watchdog', function(req,res){
 });
 
 app.post('/', (req, res) => {
+  console.log("post received");
   const test  = req.body;
-  console.log(test)
+  console.log(req.body);
   res.send('OK'); // ALL GOOD
 });
 
