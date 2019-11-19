@@ -69,15 +69,31 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script type="text/javascript">
-    $( document ).ready(function() {
-        $("button").click(function(){
-          let id = this.id;
-          let pierId = "pier"+id;
-          $("#"+pierId).toggleClass("red");
-        });
+<script type="text/javascript">
+  $( document ).ready(function() {
+    $("button").click(function(){
+      let id = this.id;
+      let pierId = "pier"+id;
+      $("#"+pierId).toggleClass("red");
     });
-  </script>
-  </body>
+
+    var ws = new WebSocket("ws://polar-sands-87869.herokuapp.com/");
+    ws.onopen = function (event) {
+    console.log('Connection is open ...');
+    ws.send("Hello Server");
+    };
+    ws.onerror = function (err) {
+    console.log('err: ', err);
+    }
+    ws.onmessage = function (event) {
+    console.log(event.data);
+    document.body.innerHTML += event.data + '&lt;br&gt;';
+    };
+    ws.onclose = function() {
+    console.log("Connection is closed...");
+    }
+  });
+</script>
+</body>
 </html>
 
