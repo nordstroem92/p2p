@@ -84,7 +84,7 @@
   </script>
 
 <script>
-  const protocol = document.location.protocol.startsWith('https') ? 'wss://' : 'ws://';
+ /* const protocol = document.location.protocol.startsWith('https') ? 'wss://' : 'ws://';
   const socket = new WebSocket(protocol + "polar-sands-87869.herokuapp.com");
   socket.onmessage = function (event) {
       console.log(event.data);
@@ -93,6 +93,15 @@
   socket.onerror = function (error) {
   console.log('An error occurred while trying to connect to a Websocket!');
   console.log(error);
+  };*/
+
+  var HOST = location.origin.replace(/^https/, 'wss')
+  var ws = new WebSocket(HOST);
+  var el;
+
+  ws.onmessage = function (event) {
+    el = document.getElementById('server-time');
+    el.innerHTML = 'Server time: ' + event.data;
   };
   </script>
   </body>

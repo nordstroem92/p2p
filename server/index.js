@@ -16,16 +16,13 @@ app.use(express.static(__dirname + 'images'));
 
 const port = process.env.PORT || 80;
 
-const server = http.createServer(app);//create a server
-
-
 require('dns').lookup(require('os').hostname(), function (err, add, fam) {
   console.log('addr: '+add);
 })
 
 
-const WebSocket = require('ws');
-const s = new WebSocket.Server({ server });
+//const WebSocket = require('ws');
+//const s = new WebSocket.Server({ server });
 
 app.use(express.static('public'));
 
@@ -33,11 +30,11 @@ app.use(express.static('public'));
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
-
+ /*
 //app.ws('/echo', function(ws, req) {
 s.on('connection',function(ws,req){
   /******* when server receives messsage from client trigger function with argument message *****/
-  ws.on('message',function(message){
+ /* ws.on('message',function(message){
   console.log("Received: "+message);
     s.clients.forEach(function(client){ //broadcast incoming message to all clients (s.clients)
       if(client!=ws && client.readyState ){ //except to the same client (ws) that sent this message
@@ -46,12 +43,16 @@ s.on('connection',function(ws,req){
     });
     // ws.send("From Server only to sender: "+ message); //send to client where message is from
   });
-  ws.on('close', function(){
+ /* ws.on('close', function(){
     console.log("lost one client");
   });
   //ws.send("new client connected");
-  console.log("new client connected");
-});
+  /*console.log("new client connected");
+});*/
+
+const { wsserver } = require('ws');
+
+const wss = new Server({ wsserver });
 
 app.use('/watchdog', function (req, res, next) {
     var t = moment.duration(parseInt(req.param('uptime')), 'milliseconds')
