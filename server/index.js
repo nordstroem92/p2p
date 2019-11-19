@@ -69,13 +69,9 @@ app.post('/watchdog', function(req,res){
 });
 
 app.post('/', (req, res) => {
-  const { username, password } = req.body;
-
-  if (username && password) {
-    res.send('OK'); // ALL GOOD
-  } else {
-    res.status(400).send('You need to provide Username & password'); // BAD REQUEST 
-  }
+  const test  = req.body;
+  console.log(test)
+  res.send('OK'); // ALL GOOD
 });
 
 app.listen(port, ()=> console.log(`Server started on port ${port}`));
