@@ -84,8 +84,7 @@
   </script>
 
 <script>
-  const protocol = document.location.protocol.startsWith('https') ? 'wss://' : 'ws://';
-  const socket = new WebSocket(protocol + "polar-sands-87869.herokuapp.com/");
+  const socket = new WebSocket("https://polar-sands-87869.herokuapp.com");
   socket.onmessage = function (event) {
       console.log(event.data);
       console.log("some data received");
