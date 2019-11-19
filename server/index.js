@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 
 app.use(express.static(__dirname + '/images'));
 
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 5000 ;
 
 app.use(express.static('public'));
 
