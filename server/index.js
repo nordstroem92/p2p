@@ -27,9 +27,8 @@ function originIsAllowed(origin) {
   return true;
 }
 
-
 const WebSocketServer = require('ws').Server
-const wss = new WebSocketServer({ port: 443 });
+const wss = new WebSocketServer({ port: 80 });
 wss.on('connection', ((ws) => {
 ws.on('message', (message) => {
 console.log(`received: ${message}`);
