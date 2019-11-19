@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 
 app.use(express.static(__dirname + '/images'));
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 443;
 
 app.use(express.static('public'));
 
@@ -29,7 +29,7 @@ function originIsAllowed(origin) {
 
 
 const WebSocketServer = require('ws').Server
-const wss = new WebSocketServer({ port: 8080 });
+const wss = new WebSocketServer({ port: 443 });
 wss.on('connection', ((ws) => {
 ws.on('message', (message) => {
 console.log(`received: ${message}`);
