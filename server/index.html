@@ -28,7 +28,6 @@
         min-height: 50px;
         color: black;
         border: 1px solid black;
-
       }
       .red{
         background-color: red;
@@ -61,16 +60,13 @@
     <div class="pier" id="pier4"style="margin-right: 38px">4</div>
     <div class="pier" id="pier3" style="margin-right: 55px">3</div>
     <div class="pier" id="pier2" style="margin-right: 65px">2</div>
-    <div class="pier" id="pier1">1</div>
+    <div class="pier" id="pier1" style="margin-right: ">1</div>
   </div>
   <div class="map"></div>
   </div>
 
 
- <input id="clickMe" type="button" value="clickme" onclick="update()"></input>
-
-<script type="text/javascript" src="js/database.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script type="text/javascript">
@@ -82,27 +78,6 @@
         });
     });
   </script>
-
-<script>
- /* const protocol = document.location.protocol.startsWith('https') ? 'wss://' : 'ws://';
-  const socket = new WebSocket(protocol + "polar-sands-87869.herokuapp.com");
-  socket.onmessage = function (event) {
-      console.log(event.data);
-      console.log("some data received");
-  };
-  socket.onerror = function (error) {
-  console.log('An error occurred while trying to connect to a Websocket!');
-  console.log(error);
-  };*/
-
-  var HOST = location.origin.replace(/^https/, 'wss')
-  var ws = new WebSocket(HOST);
-  var el;
-
-  ws.onmessage = function (event) {
-    el = document.getElementById('server-time');
-    el.innerHTML = 'Server time: ' + event.data;
-  };
-  </script>
   </body>
 </html>
+
