@@ -61,7 +61,7 @@
     <div class="pier" id="pier4"style="margin-right: 38px">4</div>
     <div class="pier" id="pier3" style="margin-right: 55px">3</div>
     <div class="pier" id="pier2" style="margin-right: 65px">2</div>
-    <div class="pier" id="pier1" style="margin-right: ">1</div>
+    <div class="pier" id="pier1">1</div>
   </div>
   <div class="map"></div>
   </div>
@@ -85,7 +85,7 @@
 
 <script>
   const protocol = document.location.protocol.startsWith('https') ? 'wss://' : 'ws://';
-  const socket = new WebSocket(protocol + "https://polar-sands-87869.herokuapp.com");
+  const socket = new WebSocket(protocol + "polar-sands-87869.herokuapp.com");
   socket.onmessage = function (event) {
       console.log(event.data);
       console.log("some data received");
