@@ -57,8 +57,3 @@ app.post('/', (req, res) => {
     res.status(400).send('You need to provide Username & password'); // BAD REQUEST
   }
 });
-
-const express = require('express')
-const bodyParser = require('body-parser')
-const express = require('express')
-const bodyParser = require('body-parser')
