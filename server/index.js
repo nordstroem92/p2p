@@ -1,15 +1,34 @@
-'use strict';
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const http = require('http');
+const WebSocket = require('ws');
 var path = require('path');
 
 const app = express();
 
+
+const server = http.createServer(app);
+
+const wss = new WebSocket.Server({ server });
+	wss.on('connection', function connection(ws) {
+		ws.on('message', function incomming(message) {
+			console.log("'received", message);
+		});
+		ws.send("something");
+	});
+
 //midlleware 
 app.use(bodyParser.json());
 app.use(cors());
+
+
+wss.on('connection', ws => {
+	ws.on('message', message => {
+		console.log(`received: ${message}`);
+	});
+	ws.send('Hello Client');
+});
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
@@ -17,26 +36,13 @@ app.get('/', function (req, res) {
 
 app.use(express.static(__dirname + '/images'));
 
-const port = process.env.PORT || 8080;
-
 app.use(express.static('public'));
 
-app.listen(port, ()=> console.log(`Server started on port ${port}`));
+server.listen(process.env.PORT || 80, () => {
+    console.log(`Server started on port ${server.address().port} :)`);
+});
 
 function originIsAllowed(origin) {
   return true;
 }
 
-
-const WebSocketServer = require('ws').Server
-const wss = new WebSocketServer({ port: 8080 });
-wss.on('connection', ((ws) => {
-ws.on('message', (message) => {
-console.log(`received: ${message}`);
-});
-
-ws.on('end', () => {
-console.log('Connection ended...');
-});
-ws.send('Hello Client');
-}));
