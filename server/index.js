@@ -1,14 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const https = require('https');
+const http = require('http');
 const WebSocket = require('ws');
 var path = require('path');
 
 const app = express();
 
 
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
