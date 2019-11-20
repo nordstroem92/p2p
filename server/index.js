@@ -50,10 +50,5 @@ function originIsAllowed(origin) {
 //POST from PI
 app.post('/', (req, res) => {
   const { username, password } = req.body;
-
-  if (username && password) {
     res.send('OK'); // ALL GOOD
-  } else {
-    res.status(400).send('You need to provide Username & password'); // BAD REQUEST
-  }
 });
