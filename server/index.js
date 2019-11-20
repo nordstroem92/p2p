@@ -18,7 +18,7 @@ const wss = new WebSocket.Server({ server });
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
 
-//midlleware 
+//midlleware
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -46,3 +46,19 @@ function originIsAllowed(origin) {
   return true;
 }
 
+
+//POST from PI
+app.post('/', (req, res) => {
+  const { username, password } = req.body;
+
+  if (username && password) {
+    res.send('OK'); // ALL GOOD
+  } else {
+    res.status(400).send('You need to provide Username & password'); // BAD REQUEST
+  }
+});
+
+const express = require('express')
+const bodyParser = require('body-parser')
+const express = require('express')
+const bodyParser = require('body-parser')
