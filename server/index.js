@@ -1,14 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const http = require('http');
+const https = require('https');
 const WebSocket = require('ws');
 var path = require('path');
 
 const app = express();
 
 
-const server = http.createServer(app);
+const server = https.createServer(app);
 
 const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
@@ -23,12 +23,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-wss.on('connection', ws => {
+/*wss.on('connection', ws => {
 	ws.on('message', message => {
 		console.log(`received: ${message}`);
 	});
 	ws.send('Hello Client');
-});
+});*/
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
