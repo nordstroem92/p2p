@@ -77,9 +77,9 @@
       $("#"+pierId).toggleClass("red");
     });
 
-    setTimeout();
+    setupWebSocket();
 
-    function setTimeout(){
+    function setupWebSocket(){
       const ws = new WebSocket("wss://polar-sands-87869.herokuapp.com");
       //const ws = new WebSocket('ws://localhost');
       ws.onopen = function (event) {
