@@ -76,21 +76,26 @@
       let pierId = "pier"+id;
       $("#"+pierId).toggleClass("red");
     });
-    const ws = new WebSocket("wss://polar-sands-87869.herokuapp.com");
-    //const ws = new WebSocket('ws://localhost');
-    ws.onopen = function (event) {
-      console.log('Connection is open ...');
-      //ws.send("Hello Server");
-    };
-    ws.onerror = function (err) {
-    console.log('err: ', err);
-    }
-    ws.onmessage = function (event) {
-    console.log(event.data);
-    document.body.innerHTML += event.data + '&lt;br&gt;';
-    };
-    ws.onclose = function() {
-    console.log("Connection is closed...");
+
+
+    function setTimeout(){
+      const ws = new WebSocket("wss://polar-sands-87869.herokuapp.com");
+      //const ws = new WebSocket('ws://localhost');
+      ws.onopen = function (event) {
+        console.log('Connection is open ...');
+        //ws.send("Hello Server");
+      };
+      ws.onerror = function (err) {
+      console.log('err: ', err);
+      }
+      ws.onmessage = function (event) {
+        console.log(event.data);
+        document.body.innerHTML += event.data + '&lt;br&gt;';
+      };
+      ws.onclose = function() {
+        setTimeout(setupWebSocket, 1000);
+        console.log("Connection is closed...");
+      }
     }
   });
 </script>
