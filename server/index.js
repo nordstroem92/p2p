@@ -18,6 +18,10 @@ const wss = new WebSocket.Server({ server });
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
+	ws.on('message', function incomming(message) {
+		console.log("'received", message);
+		ws.send(message);
+	});
 
 //midlleware
 app.use(bodyParser.json());
