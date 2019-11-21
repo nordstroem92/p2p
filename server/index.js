@@ -14,15 +14,10 @@ const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
 		ws.on('message', function incomming(message) {
 			console.log("'received", message);
-			ws.send(message);
+			ws.send("data received");
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
-	ws.on('message', function incomming(message) {
-		console.log("'received", message);
-		ws.send(message);
-	});
-
 //midlleware
 app.use(bodyParser.json());
 app.use(cors());
