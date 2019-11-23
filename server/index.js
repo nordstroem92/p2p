@@ -45,6 +45,7 @@ const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
 		ws.on('message', function incomming(message) {
 			let dataObj = JSON.parse(message);
+			console.log(dataObj)
 			if (dataObj['id'] != "undefined"){
 				let slotID = dataObj['id'];
 				console.log(slotID);
