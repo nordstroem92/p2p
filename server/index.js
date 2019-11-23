@@ -44,11 +44,14 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
 		ws.on('message', function incomming(message) {
-			console.log("message: "+message);
-			//get ID of object
-			var dataObj = JSON.parse(message);
-			slotID = dataObj['id'];
-			console.log(slotID);
+			if (typeof message === 'string' ) {
+				console.log("message: "+message);
+			} else {
+				//get ID of object
+				var dataObj = JSON.parse(message);
+				slotID = dataObj['id'];
+				console.log(slotID);
+			}
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
