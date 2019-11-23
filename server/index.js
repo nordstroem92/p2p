@@ -47,8 +47,8 @@ const wss = new WebSocket.Server({ server });
 			console.log("message: "+message);
 
 			let msgNoBrackets = message.replace(/{/g, "");
-			let msgNoBrackets = message.replace(/\\/, "");
-			let msgNoSpace = msgNoBrackets.replace(" ", "");
+			let msgNoBackslash = message.replace(/\\/, "");
+			let msgNoSpace = msgNoBackslash.replace(" ", "");
 			var res = msgNoSpace.split(/[:,]+/);
 			console.log("Message -> id:"+res[0]+"="+res[1]+", status:"+res[2]+"="+res[3]+"");
 
