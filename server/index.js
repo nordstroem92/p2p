@@ -46,16 +46,14 @@ const wss = new WebSocket.Server({ server });
 		ws.on('message', function incomming(message) {
 			console.log("message: "+message);
 
-			function isJson(message) {
+			function isJson(message) { // check for om message er JSON så vi ikke crasher serveren når vi fx. sender data fra index.html
 				try {
-					let JSONParsed = JSON.parse(message);
-					let msgId = JSONParsed['id'];
-					console.log(msgId);
-					let msgIdInt = parseInt(msgId);
-					let msgStatus = JSONParsed['status'];
-					console.log(msgStatus);
-					let msgStatusInt = parseInt(msgStatus);
-					console.log(msgIdInt +" - "+ msgStatusInt);
+					let JSONParsed = JSON.parse(message); 
+					let msgId = JSONParsed['id']; // id variable of object
+					let msgIdInt = parseInt(msgId); // DB takes integers
+					let msgStatus = JSONParsed['status']; // id variable of object
+					let msgStatusInt = parseInt(msgStatus); // DB takes integers
+					console.log("id: "+msgIdInt +" status: "+ msgStatusInt);
 					sendToDatabase(msgId, msgStatus);
 					getFromDatabase()
 				} catch (e) {
@@ -65,14 +63,6 @@ const wss = new WebSocket.Server({ server });
 			}
 			
 			isJson(message);
-
-			/*if (message.toString().includes("{")){ //if message is a JSON object update DB
-				let msgNoBrackets = message.replace(/{/g, "");
-				let msgNoBackslash = message.replace(/\\/, "");
-				let msgNoSpace = msgNoBackslash.replace(" ", "");
-				var res = msgNoSpace.split(/[:,]+/);
-				console.log("Message -> id:"+res[0]+"="+res[1]+", status:"+res[2]+"="+res[3]+"");
-			}*/
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
