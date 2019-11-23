@@ -23,7 +23,7 @@ db.run('INSERT INTO available(spotID, status) VALUES('+available+','+status +');
 }
 
 function getFromDatabase(){
-let sql = 'SELECT * FROM available WHERE status=1';
+let sql = 'SELECT * FROM available WHERE status=1'; // lorte query 
 db.all(sql, [], (err, rows) => {
 	if (err) {
 	throw err;
