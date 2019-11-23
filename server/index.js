@@ -37,6 +37,7 @@ db.all(sql, [], (err, rows) => {
 //sendToDatabase(1, 0);
 //getFromDatabase()
 
+
 db.close();
 
 //create websocket connection
@@ -46,20 +47,18 @@ const wss = new WebSocket.Server({ server });
 		ws.on('message', function incomming(message) {
 			console.log("message: "+message);
 
-			let msgNoBrackets = message.replace(/{/g, "");
-			let msgNoBackslash = message.replace(/\\/, "");
-			let msgNoSpace = msgNoBackslash.replace(" ", "");
-			var res = msgNoSpace.split(/[:,]+/);
-			console.log("Message -> id:"+res[0]+"="+res[1]+", status:"+res[2]+"="+res[3]+"");
-
-			if (message.toString().includes("{")){ //if message is a JSON object update DB
-				let msgNoBrackets = message.replace(/{/g, "");
-				let msgNoSpace = msgNoBrackets.replace(" ", "");
-				var res = msgNoSpace.split(/[:,]+/);
-				console.log("Message -> id: "+res[0]+"="+res[1]+", status: "+res[2]+"="+res[3]+"");
-				//sendToDatabase(1, 3);
-				//getFromDatabase()
+			JSONParsed = JSON.parse(message);
+			if (JSONParsed.has("id")) {
+				console.log(JSONParsed['id']);
 			}
+
+			/*if (message.toString().includes("{")){ //if message is a JSON object update DB
+				let msgNoBrackets = message.replace(/{/g, "");
+				let msgNoBackslash = message.replace(/\\/, "");
+				let msgNoSpace = msgNoBackslash.replace(" ", "");
+				var res = msgNoSpace.split(/[:,]+/);
+				console.log("Message -> id:"+res[0]+"="+res[1]+", status:"+res[2]+"="+res[3]+"");
+			}*/
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
