@@ -46,10 +46,11 @@ const wss = new WebSocket.Server({ server });
 		ws.on('message', function incomming(message) {
 			console.log("message: "+message);
 
-			if (message.toString().includes("{")){ //if message is a JSON object -work in progress
-				var res = message.split("/");
+			//if (message.toString().includes("{")){ //if message is a JSON object -work in progress
+				var test = "{ \"id\":\"1\", \"age\":\"30\", \"city\":\"New York\"}";
+				var res = test.split("\\");
 				console.log(res);
-			}
+			//}
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
