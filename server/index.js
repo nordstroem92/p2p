@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('http');
 const WebSocket = require('ws');
+const sqlite3 = require('sqlite3').verbose();
 var path = require('path');
 
 const app = express();
@@ -45,16 +46,3 @@ server.listen(process.env.PORT || 80, () => {
 function originIsAllowed(origin) {
   return true;
 }
-
-
-//POST from PI
-app.post('/', (req, res) => {
-	let message = req.body;
-  
-	if (message) {
-	  res.send('OK'); // ALL GOOD
-	  console.log("request was received")
-	} else {
-	  res.status(400).send('You need to send a message'); // BAD REQUEST 
-	}
-  });
