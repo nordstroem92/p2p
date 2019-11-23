@@ -50,9 +50,9 @@ const wss = new WebSocket.Server({ server });
 				let msgNoBrackets = message.replace(/{/g, "");
 				let msgNoSpace = msgNoBrackets.replace(" ", "");
 				var res = msgNoSpace.split(/[:,]+/);
-				console.log("Message -> id: "+res[0]+"="+res[1]+", status: "+res[2]+"="+res[3]+"");
-				sendToDatabase(1, 3);
-				getFromDatabase()
+				//console.log("Message -> id: "+res[0]+"="+res[1]+", status: "+res[2]+"="+res[3]+"");
+				//sendToDatabase(1, 3);
+				//getFromDatabase()
 			}
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
