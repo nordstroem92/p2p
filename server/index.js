@@ -50,7 +50,7 @@ const wss = new WebSocket.Server({ server });
 			let msgNoBrackets = message.replace(/\\/, "");
 			let msgNoSpace = msgNoBrackets.replace(" ", "");
 			var res = msgNoSpace.split(/[:,]+/);
-			console.log("Message -> id: "+res[0]+"="+res[1]+", status: "+res[2]+"="+res[3]+"");
+			console.log("Message -> id:"+res[0]+"="+res[1]+", status:"+res[2]+"="+res[3]+"");
 
 			if (message.toString().includes("{")){ //if message is a JSON object update DB
 				let msgNoBrackets = message.replace(/{/g, "");
