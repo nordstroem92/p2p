@@ -22,7 +22,7 @@ console.log(available, status)
 db.run('INSERT INTO available(spotID, status) VALUES('+available+','+status +');');
 }
 
-function GetFromDatabase(){
+function getFromDatabase(){
 let sql = 'SELECT * FROM available WHERE status=1';
 db.all(sql, [], (err, rows) => {
 	if (err) {
@@ -34,8 +34,8 @@ db.all(sql, [], (err, rows) => {
 });
 }
 
-sendToDatabase(1, 0);
-GetFromDatabase()
+//sendToDatabase(1, 0);
+//getFromDatabase()
 
 db.close();
 
@@ -46,13 +46,13 @@ const wss = new WebSocket.Server({ server });
 		ws.on('message', function incomming(message) {
 			console.log("message: "+message);
 
-			if (message.toString().includes("{")){ //if message is a JSON object -work in progress
+			if (message.toString().includes("{")){ //if message is a JSON object update DB
 				let msgNoBrackets = message.replace(/{/g, "");
 				let msgNoSpace = msgNoBrackets.replace(" ", "");
 				var res = msgNoSpace.split(/[:,]+/);
-				if(res[1] = "1") {
-					console.log("nice");
-				}
+				console.log("Message -> id: "+res[0]+"="+res[1]+", status: "+res[2]+"="+red[3]+"");
+				sendToDatabase(1, 3);
+				getFromDatabase()
 			}
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
