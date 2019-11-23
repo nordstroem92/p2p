@@ -46,11 +46,14 @@ const wss = new WebSocket.Server({ server });
 		ws.on('message', function incomming(message) {
 			console.log("message: "+message);
 
-			//if (message.toString().includes("{")){ //if message is a JSON object -work in progress
-				var test = "{ \"id\":\"1\", \"age\":\"30\", \"city\":\"New York\"}";
-				var res = test.split("\\");
-				console.log(res);
-			//}
+			if (message.toString().includes("{")){ //if message is a JSON object -work in progress
+				let msgNoBrackets = message.replace(/{/g, "");
+				let msgNoSpace = msgNoBrackets.replace(" ", "");
+				var res = msgNoSpace.split(/[:,]+/);
+				if(res[1] = "1") {
+					console.log("nice");
+				}
+			}
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
