@@ -50,8 +50,10 @@ const wss = new WebSocket.Server({ server });
 				try {
 					let JSONParsed = JSON.parse(message);
 					let msgId = JSONParsed['id'];
+					console.log(msgId);
 					let msgIdInt = parseInt(msgId);
 					let msgStatus = JSONParsed['status'];
+					console.log(msgStatus);
 					let msgStatusInt = parseInt(msgStatus);
 					console.log(msgIdInt +" - "+ msgStatusInt);
 					sendToDatabase(msgId, msgStatus);
