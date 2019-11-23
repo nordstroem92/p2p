@@ -49,7 +49,7 @@ const wss = new WebSocket.Server({ server });
 
 			function isJson(message) {
 				try {
-					JSON.parse(message);
+					JSONParsed = JSON.parse(message);
 					console.log(JSONParsed['id']);
 				} catch (e) {
 					return false;
@@ -57,7 +57,7 @@ const wss = new WebSocket.Server({ server });
 				return true;
 			}
 			
-			isJson(message);
+			isJson('{ "id":"2", "status":"2"}');
 
 			/*if (message.toString().includes("{")){ //if message is a JSON object update DB
 				let msgNoBrackets = message.replace(/{/g, "");
