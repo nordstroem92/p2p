@@ -45,6 +45,7 @@ const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
 		ws.on('message', function incomming(message) {
 			if (typeof message === 'string' ) {
+				console.log("message: "+message[id]);
 				console.log("message: "+message);
 			} else {
 				//get ID of object
