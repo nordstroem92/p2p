@@ -8,14 +8,45 @@ var path = require('path');
 
 const app = express();
 
+//setup database
+let db = new sqlite3.Database('./test.db', (err) => {
+	if (err) {
+		console.error(err.message);
+	}
+	console.log('Connected to the test database.');
+});
+db.run('CREATE TABLE IF NOT EXISTS available(spotID INT, status INT)');
+  
+function sendToDatabase(available, status){
+console.log(available, status)
+db.run('INSERT INTO available(spotID, status) VALUES('+available+','+status +');');
+}
 
+function GetFromDatabase(){
+let sql = 'SELECT * FROM available WHERE status=1';
+db.all(sql, [], (err, rows) => {
+	if (err) {
+	throw err;
+	}
+	rows.forEach((row) => {
+	console.log(row.name);
+	});
+});
+}
+
+sendToDatabase(1, 0);
+GetFromDatabase()
+
+db.close();
+
+//create websocket connection
 const server = http.createServer(app);
-
 const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
 		ws.on('message', function incomming(message) {
-			console.log("'received", message);
-			ws.send(message);
+			console.log("message: "+message);
+			console.log("message topic: "+message.topic);
+			console.log("message data: "+message.data);
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
@@ -23,14 +54,7 @@ const wss = new WebSocket.Server({ server });
 app.use(bodyParser.json());
 app.use(cors());
 
-
-/*wss.on('connection', ws => {
-	ws.on('message', message => {
-		console.log(`received: ${message}`);
-	});
-	ws.send('Hello Client');
-});*/
-
+//routing
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
   });
