@@ -45,6 +45,9 @@ const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
 		ws.on('message', function incomming(message) {
 			console.log("message: "+message);
+			if (message.toString().includes("{")){
+				console.log("så for satan")
+			}
 			//get ID of object
 			//var dataObj = JSON.parse(message);
 			//slotID = dataObj['id'];
