@@ -49,12 +49,12 @@ function originIsAllowed(origin) {
 
 //POST from PI
 app.post('/', (req, res) => {
-	const { username, password } = req.body;
+	let message = req.body;
   
-	if (username && password) {
+	if (message) {
 	  res.send('OK'); // ALL GOOD
 	  console.log("request was received")
 	} else {
-	  res.status(400).send('You need to provide Username & password'); // BAD REQUEST 
+	  res.status(400).send('You need to send a message'); // BAD REQUEST 
 	}
   });
