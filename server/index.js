@@ -37,7 +37,6 @@ db.all(sql, [], (err, rows) => {
 //sendToDatabase(1, 0);
 //getFromDatabase()
 
-
 db.close();
 
 //create websocket connection
@@ -51,7 +50,10 @@ const wss = new WebSocket.Server({ server });
 				try {
 					let JSONParsed = JSON.parse(message);
 					let msgId = JSONParsed['id'];
-					let msgStatus = JSONParsed['id'];
+					let msgIdInt = parseInt(msgId);
+					let msgStatus = JSONParsed['status'];
+					let msgStatusInt = parseInt(msgStatus);
+					console.log(msgIdInt +" - "+ msgStatusInt);
 					sendToDatabase(msgId, msgStatus);
 					getFromDatabase()
 				} catch (e) {
