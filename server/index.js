@@ -44,6 +44,9 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 	wss.on('connection', function connection(ws) {
 		ws.on('message', function incomming(message) {
+			console.log("message: "+message);
+			ws.send("hej verden");
+
 			function isJson(message) { // check for om message er JSON så vi ikke crasher serveren når vi fx. sender data fra index.html
 				try {
 					let JSONParsed = JSON.parse(message); 
@@ -66,8 +69,7 @@ const wss = new WebSocket.Server({ server });
 				return true;
 			}
 			isJson(message);
-			console.log("message: "+message);
-			wss.broadcast(message);
+
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
