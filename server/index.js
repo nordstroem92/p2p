@@ -63,7 +63,7 @@ const wss = new WebSocket.Server({ server });
 						status: msgStatus
 					}
 					JSONobj = JSON.stringify(obj); 
-					ws.send(JSONobj);
+					ws.send("Hej med jer");
 				} catch (e) {
 					return false;
 				}
