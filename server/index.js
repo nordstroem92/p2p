@@ -68,14 +68,6 @@ const wss = new WebSocket.Server({ server });
 			isJson(message);
 			console.log("message: "+message);
 			wss.broadcast(message);
-
-			//broadcast funciton
-			wss.broadcast = function broadcast(msg) {
-				console.log(msg);
-				wss.clients.forEach(function each(client) {
-					client.send(msg);
-				 });
-			};
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
