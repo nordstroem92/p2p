@@ -45,6 +45,8 @@ const wss = new WebSocket.Server({ server });
 var socket = []; //not used yet
 
 	wss.on('connection', function connection(ws) {
+		socket.push(ws); // make array of connected sockets
+
 		ws.on('message', function incomming(message) {
 			console.log("message: "+message);
 
@@ -70,7 +72,10 @@ var socket = []; //not used yet
 				return true;
 			}
 			isJson(message);
-			wss.send("test");
+
+			for(i = 0; i < socket.length; i++) {
+				socket[i].send(message);
+			}
 
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
