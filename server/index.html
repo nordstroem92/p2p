@@ -97,8 +97,8 @@
 					let JSONParsed = JSON.parse(event.data); 
           console.log("object was parsed via JSON");
           document.body.innerHTML += event.data['id'] + '&lt;br&gt;';
-          console.log(JSONParsed['id']);
-          console.log(JSONParsed['status']);
+          console.log("id: "+JSONParsed['id']);
+          console.log("status: "+JSONParsed['status']);
 				} catch (e) {
 					return false;
 				}
