@@ -101,6 +101,7 @@
           document.body.innerHTML += 'status: ' + JSONParsed['status'] + '&lt;br&gt;';
           if (id == "1" && status == 1) {
              $("#pier"+id).toggleClass("red");
+             console.log("yolo");
           }
           console.log("id: "+JSONParsed['id']);
           console.log("status: "+JSONParsed['status']);
