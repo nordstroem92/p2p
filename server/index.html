@@ -90,12 +90,15 @@
       console.log('err: ', err);
       }
       ws.onmessage = function (event) {
-        console.log(event.data);
-        document.body.innerHTML += event.data + '&lt;br&gt;';
+        //console.log(event.data);
+        //document.body.innerHTML += event.data + '&lt;br&gt;';
 
         try {
 					let JSONParsed = JSON.parse(message); 
           console.log("object was parsed via JSON");
+          document.body.innerHTML += event.data['id'] + '&lt;br&gt;';
+          console.log(event.data['id']);
+          console.log(event.data['status']);
 				} catch (e) {
 					return false;
 				}

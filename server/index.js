@@ -60,12 +60,6 @@ var socket = []; //not used yet
 					console.log("id: "+msgIdInt +" status: "+ msgStatusInt);
 					sendToDatabase(msgId, msgStatus);
 					getFromDatabase()
-					//send data to HMTL.index
-					/*let obj = {
-						id: msgId,
-						status: msgStatus
-					}
-					JSONobj = JSON.stringify(obj); */
 				} catch (e) {
 					return false;
 				}
@@ -73,10 +67,9 @@ var socket = []; //not used yet
 			}
 			isJson(message);
 
-			for(i = 0; i < socket.length; i++) {
+			for(i = 0; i < socket.length; i++) { // loop gennem alle sockets og send besked - vi skal i virkeligheden kun sende til HTML-siden, spørgsmålet er om de altid bliver connected i samme rækkefølge?
 				socket[i].send(message);
 			}
-
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
