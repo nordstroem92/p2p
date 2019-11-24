@@ -57,9 +57,9 @@ const wss = new WebSocket.Server({ server });
 					sendToDatabase(msgId, msgStatus);
 					getFromDatabase()
 
-					for (var i=0; i < clients.length; i++) {
-						clients[i].sendUTF("Hej med jer");
-					}
+					wss.clients.forEach(function each(client) {
+						client.send("test");
+					});
 					//send data to HMTL.index
 					/*let obj = {
 						id: msgId,
