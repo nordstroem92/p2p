@@ -56,6 +56,14 @@ const wss = new WebSocket.Server({ server });
 					console.log("id: "+msgIdInt +" status: "+ msgStatusInt);
 					sendToDatabase(msgId, msgStatus);
 					getFromDatabase()
+
+					//send data to HMTL.index
+					let obj = {
+						id: msgId,
+						status: msgStatus
+					}
+					JSONobj = JSON.stringify(obj); 
+					ws.send(JSONobj);
 				} catch (e) {
 					return false;
 				}

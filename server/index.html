@@ -92,6 +92,13 @@
       ws.onmessage = function (event) {
         console.log(event.data);
         document.body.innerHTML += event.data + '&lt;br&gt;';
+
+        try {
+					let JSONParsed = JSON.parse(message); 
+          console.log("object was parsed via JSON");
+				} catch (e) {
+					return false;
+				}
       };
       ws.onclose = function() {
         setTimeout(setupWebSocket, 1000);
