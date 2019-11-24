@@ -57,13 +57,15 @@ const wss = new WebSocket.Server({ server });
 					sendToDatabase(msgId, msgStatus);
 					getFromDatabase()
 
+					for (var i=0; i < clients.length; i++) {
+						clients[i].sendUTF("Hej med jer");
+					}
 					//send data to HMTL.index
-					let obj = {
+					/*let obj = {
 						id: msgId,
 						status: msgStatus
 					}
-					JSONobj = JSON.stringify(obj); 
-					ws.send("Hej med jer");
+					JSONobj = JSON.stringify(obj); */
 				} catch (e) {
 					return false;
 				}
