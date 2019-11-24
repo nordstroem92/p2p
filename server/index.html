@@ -97,9 +97,10 @@
 					let JSONParsed = JSON.parse(event.data); 
           console.log("object was parsed via JSON");
           id = JSONParsed['id'];
+          status = JSONParsed['status'];
           document.body.innerHTML += 'id: ' + JSONParsed['id'] + '&lt;br&gt;';
           document.body.innerHTML += 'status: ' + JSONParsed['status'] + '&lt;br&gt;';
-          if (id == "1" && status == 1) {
+          if (id == "1" && status == "1") {
              $("#pier"+id).toggleClass("red");
              console.log("yolo");
           }
