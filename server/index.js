@@ -56,10 +56,6 @@ const wss = new WebSocket.Server({ server });
 					console.log("id: "+msgIdInt +" status: "+ msgStatusInt);
 					sendToDatabase(msgId, msgStatus);
 					getFromDatabase()
-
-					wss.clients.forEach(function each(client) {
-						client.send("test");
-					});
 					//send data to HMTL.index
 					/*let obj = {
 						id: msgId,
@@ -71,8 +67,9 @@ const wss = new WebSocket.Server({ server });
 				}
 				return true;
 			}
-			
 			isJson(message);
+
+			ws.send(message);
 		});
 		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
