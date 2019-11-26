@@ -6,19 +6,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style media="screen">
       .map {
-        width: 100%;
-        height: 100%;
-        border: 1px solid black;
+        width:327.6px;
+        height:650px;
         background-image: url("images/havnekort.jpg");
-        background-repeat: no-repeat;
+        background-size: cover;
         background-color: #cccccc;
         margin-bottom: 20px;
+        display: block;
+        float:left;
       }
       .map-overlay{
         z-index: 1;
         position: absolute;
-        top: 522px;
-        left: 486px;
+        top: 270px;
+        left:30px;
         transform: rotate(25.5deg);
       }
       .pier {
@@ -43,39 +44,35 @@
   </head>
   <body>
   <h1>Aarhus Smart Harbor</h1>
-  <div style="padding: 10px 10px;">
-  <button class="btn btn-outline-secondary" id="1">1</button>
-  <button class="btn btn-outline-secondary" id="2">2</button>
-  <button class="btn btn-outline-secondary" id="3">3</button>
-  <button class="btn btn-outline-secondary" id="4">4</button>
-  <button class="btn btn-outline-secondary" id="5">5</button>
-  <button class="btn btn-outline-secondary" id="6">6</button>
-  <button class="btn btn-outline-secondary" id="7">7</button>
-  </div>
-
   <div class="map-overlay">
-    <div class="pier" id="pier7" style="margin-right: 55px">7</div>
-    <div class="pier" id="pier6" style="margin-right: 38px">6</div>
-    <div class="pier" id="pier5" style="margin-right: 50px">5</div>
-    <div class="pier" id="pier4"style="margin-right: 38px">4</div>
-    <div class="pier" id="pier3" style="margin-right: 55px">3</div>
-    <div class="pier" id="pier2" style="margin-right: 65px">2</div>
-    <div class="pier" id="pier1" style="margin-right: ">1</div>
+    <div style="margin-left: 180px">
+        <div class="pier" id="pier1" >1</div>
+    </div>
+    <div style="margin-top: 110px; margin-left: 150px">
+        <div class="pier" id="pier4" style="margin-right: 30px">4</div>
+        <div class="pier" id="pier2">2</div>
+       
+    </div>
+    <div style="margin-top: 30px; margin-left: 150px">
+        <div class="pier" id="pier5" style="margin-right: 30px">5</div>
+        <div class="pier" id="pier3">3</div>
+    </div>
   </div>
   <div class="map"></div>
+  <div style="display: inline-block; margin-left: 40px; margin-top: 20px; padding: 30px; background-color: #F0F3F5; width: 250px;">
+    <p><b>Spot 1: </b><span id="message1">not occupied </span><span id="label1" style=" border-left: 10px; display: inline-block; height: 10px; width: 10px; background-color:#00ff00; border-radius: 100%"></span></p>
+    <p><b>Spot 2: </b><span id="message2">not occupied </span><span id="label2" style="display: inline-block; height: 10px; width: 10px; background-color:#00ff00; border-radius: 100%"></span></p>
+    <p><b>Spot 3: </b><span id="message3">not occupied </span><span id="label3" style="display: inline-block; height: 10px; width: 10px; background-color:#00ff00; border-radius: 100%"></span></p>
+    <p><b>Spot 4: </b><span id="message4">not occupied </span><span id="label4" style="display: inline-block; height: 10px; width: 10px; background-color:#00ff00; border-radius: 100%"></span></p>
+    <p><b>Spot 5: </b><span id="message5">not occupied </span><span id="label5" style="display: inline-block; height: 10px; width: 10px; background-color:#00ff00; border-radius: 100%"></span></p>
   </div>
-
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript">
   $( document ).ready(function() {
-    $("button").click(function(){
-      let id = this.id;
-      let pierId = "pier"+id;
-      $("#"+pierId).toggleClass("red");
-    });
 
     setupWebSocket();
 
@@ -92,6 +89,10 @@
       ws.onmessage = function (event) {
         //console.log(event.data);
         //document.body.innerHTML += event.data + '&lt;br&gt;';
+        $("#test").click(function(){
+          $("#message1").text("occupied ");
+          $("#label1").css("background-color","red");
+        });
 
         try {
 					let JSONParsed = JSON.parse(event.data); 
@@ -102,9 +103,13 @@
           document.body.innerHTML += 'status: ' + JSONParsed['status'] + '&lt;br&gt;';
           if (status == "1") {
              $("#pier"+id).css("background-color","#00ff00");
+             $("#message"+id).text("not occupied ");
+             $("#label"+id).css("background-color","00ff00");
           }
           else {
            $("#pier"+id).css("background-color","red"); 
+           $("#message"+id).text("occupied ");
+           $("#label"+id).css("background-color","red");
           }
           console.log("id: "+JSONParsed['id']);
           console.log("status: "+JSONParsed['status']);
