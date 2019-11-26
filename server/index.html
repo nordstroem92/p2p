@@ -100,11 +100,11 @@
           status = JSONParsed['status'];
           document.body.innerHTML += 'id: ' + JSONParsed['id'] + '&lt;br&gt;';
           document.body.innerHTML += 'status: ' + JSONParsed['status'] + '&lt;br&gt;';
-          if (id == "1" && status == "1") {
-             $("#pier"+id).css("background-color","red");
+          if (status == "1") {
+             $("#pier"+id).css("background-color","#00ff00");
           }
           else {
-           $("#pier"+id).css("background-color","#00ff00"); 
+           $("#pier"+id).css("background-color","red"); 
           }
           console.log("id: "+JSONParsed['id']);
           console.log("status: "+JSONParsed['status']);
