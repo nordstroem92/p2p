@@ -71,7 +71,6 @@ var socket = []; //not used yet
 				socket[i].send(message);
 			}
 		});
-		ws.send("WITT OG JONAS STYRER TIL AT LAVE WEBSOCKETS! :) <3<3<3<3");
 	});
 //midlleware
 app.use(bodyParser.json());
