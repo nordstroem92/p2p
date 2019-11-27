@@ -100,14 +100,12 @@
       ws.onmessage = function (event) {
         //console.log(event.data);
         //document.body.innerHTML += event.data + '&lt;br&gt;';
-        let statusbar = 0;
         try {
 					let JSONParsed = JSON.parse(event.data); 
           console.log("object was parsed via JSON");
           id = JSONParsed['id'];
           status = JSONParsed['status'];
-         // document.body.innerHTML += 'id: ' + JSONParsed['id'] + '&lt;br&gt;';
-         // document.body.innerHTML += 'status: ' + JSONParsed['status'] + '&lt;br&gt;';
+          statusbar = 0;
           if (status == "1") {
             $("#pier"+id).css("background-color","#00ff00");
             $("#message"+id).text("Not occupied ");
@@ -116,25 +114,16 @@
               statusbar -= 20;
               console.log(statusbar);
             }
-            $(".progress-bar").css("width:",statusbar);
-            if(statusbar < 59){
-              $(".progress-bar").addClass("bg-info");
-              $(".progress-bar").removeClass("bg-danger");
-              console.log(statusbar);
-            }
+            $(".progress-bar").css("width:", statusbar+"%");
           }
-          else {
+          else (status == "0") {
             $("#pier"+id).css("background-color","red"); 
             $("#message"+id).text("Occupied ");
             $("#label"+id).css("background-color","red");
             if( statusbar !== 100){
               statusbar += 20;
             }
-            $(".progress-bar").css("width:",statusbar);
-            if(statusbar > 59){
-              $(".progress-bar").addClass("bg-danger");
-              $(".progress-bar").removeClass("bg-info");
-            }
+            $(".progress-bar").css("width:", statusbar+"%");
           }
           console.log("id: "+JSONParsed['id']);
           console.log("status: "+JSONParsed['status']);
