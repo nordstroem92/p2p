@@ -109,10 +109,10 @@
             $("#pier"+id).css("background-color","#00ff00");
             $("#message"+id).text("Not occupied ");
             $("#label"+id).css("background-color","#00ff00");
-            $(".progress-bar").css("width", statusbar+"%");
             if (statusbar < 100){
               statusbar += 20;
             }
+            $(".progress-bar").css("width", statusbar+"%");
           }
           else {
             $("#pier"+id).css("background-color","red"); 
