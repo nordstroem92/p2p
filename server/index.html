@@ -106,13 +106,15 @@
           console.log("object was parsed via JSON");
           id = JSONParsed['id'];
           status = JSONParsed['status'];
-          document.body.innerHTML += 'id: ' + JSONParsed['id'] + '&lt;br&gt;';
-          document.body.innerHTML += 'status: ' + JSONParsed['status'] + '&lt;br&gt;';
+         // document.body.innerHTML += 'id: ' + JSONParsed['id'] + '&lt;br&gt;';
+         // document.body.innerHTML += 'status: ' + JSONParsed['status'] + '&lt;br&gt;';
           if (status == "1") {
             $("#pier"+id).css("background-color","#00ff00");
             $("#message"+id).text("Not occupied ");
             $("#label"+id).css("background-color","00ff00");
-            statusbar -= 20;
+            if( statusbar !== 0){
+              statusbar -= 20;
+            }
             $(".progress-bar").css("width:",statusbar);
             if(statusbar < 59){
               $(".progress-bar").addClass("bg-info");
@@ -123,7 +125,9 @@
             $("#pier"+id).css("background-color","red"); 
             $("#message"+id).text("Occupied ");
             $("#label"+id).css("background-color","red");
-            statusbar += 20;
+            if( statusbar !== 100){
+              statusbar += 20;
+            }
             $(".progress-bar").css("width:",statusbar);
             if(statusbar > 59){
               $(".progress-bar").addClass("bg-danger");
