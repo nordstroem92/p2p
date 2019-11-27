@@ -109,18 +109,17 @@
             $("#pier"+id).css("background-color","#00ff00");
             $("#message"+id).text("Not occupied ");
             $("#label"+id).css("background-color","#00ff00");
-            if( statusbar !== 0){
-              statusbar -= 20;
-              console.log(statusbar);
-            }
             $(".progress-bar").css("width", statusbar+"%");
+            if (statusbar < 100){
+              statusbar += 20;
+            }
           }
           else {
             $("#pier"+id).css("background-color","red"); 
             $("#message"+id).text("Occupied ");
             $("#label"+id).css("background-color","red");
-            if( statusbar !== 100){
-              statusbar += 20;
+            if (statusbar > 0){
+              statusbar -= 20;
             }
             $(".progress-bar").css("width", statusbar+"%");
           }
