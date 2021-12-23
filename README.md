@@ -9,5 +9,6 @@ IoT harbor logistics system using object recognition for detecting free boat slo
 
 ### Prototypes
 For proof of conpect, a model harbor was laser-cutted, and model boats were places to be located by the Raspberry Pi camera
-![image](https://user-images.githubusercontent.com/15377936/147266573-cb8538e0-1ac0-4904-9674-305503c5e5c7.png)
+<img width="400" src="https://user-images.githubusercontent.com/15377936/147266573-cb8538e0-1ac0-4904-9674-305503c5e5c7.png">
 
+<img width="400" src="https://user-images.githubusercontent.com/15377936/147266900-de32ef6a-5fc3-4429-81fd-dc50ce479bb3.png">
