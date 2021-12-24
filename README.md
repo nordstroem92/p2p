@@ -1,6 +1,6 @@
 # IoT-and-Object-Detection
 IoT harbor logistics system using object recognition for detecting free boat slots in a harbor.  Implemented in Node.js / JS / Python / OpenCV / YOLO. The model itself is not uploaded to github, since the file was too big.
-
+ 
 ### Application architecture
 <img width="400" src="https://user-images.githubusercontent.com/15377936/147265759-fdf59bf2-0f38-4f58-8b84-b1370a217369.png">
 
